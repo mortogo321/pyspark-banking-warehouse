@@ -14,7 +14,8 @@ updates:
         versions: [">=4"]
 
   - package-ecosystem: docker
-    directory: /
+    # Dockerfile lives in docker/, not at the repo root.
+    directory: /docker
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
