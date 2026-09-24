@@ -21,8 +21,9 @@ RUN curl -fsSL -o /opt/spark/jars/hadoop-aws-${HADOOP_AWS_VERSION}.jar \
       "${MAVEN_BASE}/org/postgresql/postgresql/${POSTGRESQL_JDBC_VERSION}/postgresql-${POSTGRESQL_JDBC_VERSION}.jar"
 
 # pyspark itself is already provided by the base image; only the test runner
-# and the seed job's S3 bucket-creation helper are added on top.
-RUN pip install --no-cache-dir pytest boto3
+# and the seed job's S3 bucket-creation helper are added on top. Ranges match
+# pyproject.toml so image rebuilds stay up-to-date via Dependabot (pip).
+RUN pip install --no-cache-dir "pytest>=8,<10" "boto3>=1.34,<2"
 
 # spark-submit sets these up for its own driver subprocess, but a bare
 # `python3 -m pytest` (used by the tests service) does not, so pyspark and

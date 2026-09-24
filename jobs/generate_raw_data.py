@@ -232,7 +232,7 @@ def main() -> None:
     all_transactions = clean_transactions + dirty_transactions
     rng.shuffle(all_transactions)
 
-    changed = sum(1 for a, b in zip(customers_snapshot1, customers_snapshot2) if a["province"] != b["province"] or a["segment"] != b["segment"])
+    changed = sum(1 for a, b in zip(customers_snapshot1, customers_snapshot2, strict=True) if a["province"] != b["province"] or a["segment"] != b["segment"])
     print(f"[seed] window: {window_start.isoformat()} .. {end_date.isoformat()} ({config.DATA_WINDOW_DAYS} days)")
     print(f"[seed] snapshot1={window_start.isoformat()} snapshot2={snapshot2_date.isoformat()} customers_changed={changed}")
     print(f"[seed] branches={len(branches)} customers={len(customers_snapshot1)} accounts={len(accounts)}")

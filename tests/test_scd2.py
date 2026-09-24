@@ -9,14 +9,14 @@ from pipeline.transforms import scd2_merge
 
 
 def _incoming_row(**overrides):
-    base = dict(
-        customer_id="CUST000001",
-        name="Somchai Srisawat",
-        segment="retail",
-        province="Bangkok",
-        kyc_level="basic",
-        snapshot_date=date(2026, 4, 1),
-    )
+    base = {
+        "customer_id": "CUST000001",
+        "name": "Somchai Srisawat",
+        "segment": "retail",
+        "province": "Bangkok",
+        "kyc_level": "basic",
+        "snapshot_date": date(2026, 4, 1),
+    }
     base.update(overrides)
     return Row(**base)
 
@@ -97,7 +97,7 @@ def test_new_customer_in_second_snapshot_gets_new_row(spark):
     rows = dim_after_2.collect()
 
     assert len(rows) == 2
-    new_customer = [r for r in rows if r.customer_id == "CUST000099"][0]
+    new_customer = next(r for r in rows if r.customer_id == "CUST000099")
     assert new_customer.is_current is True
     assert new_customer.effective_from == date(2026, 5, 17)
     assert len({r.customer_key for r in rows}) == 2

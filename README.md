@@ -1,5 +1,10 @@
 # PySpark Banking Warehouse
 
+[![CI](https://github.com/mortogo321/pyspark-banking-warehouse/actions/workflows/ci.yml/badge.svg)](https://github.com/mortogo321/pyspark-banking-warehouse/actions/workflows/ci.yml)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/)
+[![Spark 3.5.9](https://img.shields.io/badge/spark-3.5.9-orange.svg)](https://spark.apache.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 A Docker-first data-engineering showcase: a synthetic banking data lake on
 S3-compatible object storage, a Glue-style PySpark ETL pipeline, a star-schema
 warehouse loaded into Postgres (standing in for Redshift), and two

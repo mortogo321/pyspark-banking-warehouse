@@ -1,4 +1,4 @@
-.PHONY: up seed etl report test psql down build
+.PHONY: up seed etl report test lint psql down build
 
 build:
 	docker compose build
@@ -18,6 +18,9 @@ report:
 
 test:
 	docker compose run --rm tests
+
+lint:
+	ruff check src tests jobs
 
 psql:
 	docker compose exec postgres psql -U $${POSTGRES_USER:-warehouse} -d $${POSTGRES_DB:-warehouse}

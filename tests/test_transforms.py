@@ -17,18 +17,18 @@ from pipeline.transforms import (
 
 
 def _txn_row(**overrides):
-    base = dict(
-        txn_id="TXN0000001",
-        txn_date="2026-04-05",
-        account_id="ACC0000001",
-        customer_id="CUST000001",
-        branch_code="BR001",
-        channel="branch",
-        txn_type="deposit",
-        is_cash=True,
-        amount=1000.0,
-        fee=0.0,
-    )
+    base = {
+        "txn_id": "TXN0000001",
+        "txn_date": "2026-04-05",
+        "account_id": "ACC0000001",
+        "customer_id": "CUST000001",
+        "branch_code": "BR001",
+        "channel": "branch",
+        "txn_type": "deposit",
+        "is_cash": True,
+        "amount": 1000.0,
+        "fee": 0.0,
+    }
     base.update(overrides)
     return Row(**base)
 
@@ -76,9 +76,9 @@ def test_build_dim_date_row_count_and_fields(spark):
     assert rows[0].month == 1
     assert rows[0].quarter == 1
     # 2026-01-03 is a Saturday
-    saturday = [r for r in rows if r.date == date(2026, 1, 3)][0]
+    saturday = next(r for r in rows if r.date == date(2026, 1, 3))
     assert saturday.is_weekend is True
-    monday = [r for r in rows if r.date == date(2026, 1, 5)][0]
+    monday = next(r for r in rows if r.date == date(2026, 1, 5))
     assert monday.is_weekend is False
 
 
@@ -115,17 +115,17 @@ def test_build_dim_account_assigns_keys_and_casts_date(spark):
 
 
 def _dim_customer_row(**overrides):
-    base = dict(
-        customer_key=1,
-        customer_id="CUST000001",
-        name="Somchai Srisawat",
-        segment="retail",
-        province="Bangkok",
-        kyc_level="basic",
-        effective_from=date(2026, 1, 1),
-        effective_to=None,
-        is_current=True,
-    )
+    base = {
+        "customer_key": 1,
+        "customer_id": "CUST000001",
+        "name": "Somchai Srisawat",
+        "segment": "retail",
+        "province": "Bangkok",
+        "kyc_level": "basic",
+        "effective_from": date(2026, 1, 1),
+        "effective_to": None,
+        "is_current": True,
+    }
     base.update(overrides)
     return Row(**base)
 

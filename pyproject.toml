@@ -1,0 +1,44 @@
+[project]
+name = "pyspark-banking-warehouse"
+version = "1.0.0"
+description = "PySpark ETL pipeline building a banking star-schema data warehouse - Glue-style jobs, S3 data lake, Redshift patterns, SCD2, regulatory reporting"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+license = { text = "MIT" }
+authors = [{ name = "Somchai Juntapracon", email = "mortogo321@gmail.com" }]
+keywords = ["pyspark", "etl", "data-warehouse", "scd2", "glue", "redshift"]
+classifiers = [
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+  # Pinned to the Docker base image (apache/spark:3.5.9-python3 bundles
+  # pyspark 3.5.9). Keep these in sync or local pytest and spark-submit drift.
+  "pyspark==3.5.9",
+  "boto3>=1.34,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<10",
+  "ruff>=0.8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "RUF"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+"jobs/*" = ["E402"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pipeline"]

@@ -1,0 +1,15 @@
+# Build context exclusions — keep the Spark image lean and cache-friendly.
+.git/
+.github/
+data/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.env
+.DS_Store
+.idea/
+.vscode/
