@@ -2,7 +2,7 @@
 # /opt/spark/jars/hadoop-client-api-*.jar in the base image), so the S3A
 # connector and its AWS SDK dependency are pinned to the matching versions
 # rather than "latest", or the two would drift apart at runtime.
-FROM apache/spark:3.5.9-python3
+FROM apache/spark:4.2.0-python3
 
 USER root
 
