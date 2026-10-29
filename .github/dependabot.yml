@@ -5,13 +5,6 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
-    ignore:
-      # pyspark must stay on 3.5.x to match the Docker base image
-      # (apache/spark:3.5.9-python3 bundles pyspark 3.5.9). A 4.x upgrade
-      # requires switching the base image first — do that deliberately,
-      # not via an automated bump.
-      - dependency-name: pyspark
-        versions: [">=4"]
 
   - package-ecosystem: docker
     # Dockerfile lives in docker/, not at the repo root.
@@ -19,13 +12,6 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
-    ignore:
-      # apache/spark held at 3.5.x: a 4.x upgrade needs a coordinated
-      # migration (base image + pyspark pin + Hadoop jar versions +
-      # full E2E verification), not an automated bump. 3.5.x is still
-      # released in parallel with 4.x, so patches keep flowing.
-      - dependency-name: apache/spark
-        versions: [">=4"]
 
   - package-ecosystem: github-actions
     directory: /
