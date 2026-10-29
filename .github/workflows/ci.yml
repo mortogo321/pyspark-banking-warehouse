@@ -23,6 +23,11 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Every version pyspark 4.2.0 declares support for within requires-python.
+        python-version: ["3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v7
 
@@ -33,7 +38,7 @@ jobs:
 
       - uses: astral-sh/setup-uv@v10.3.3
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
           enable-cache: true
 
       - name: Install dependencies (from uv.lock)
