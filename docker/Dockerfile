@@ -8,7 +8,7 @@ USER root
 
 ARG HADOOP_AWS_VERSION=3.3.4
 ARG AWS_SDK_BUNDLE_VERSION=1.12.262
-ARG POSTGRESQL_JDBC_VERSION=42.7.13
+ARG POSTGRESQL_JDBC_VERSION=42.7.14
 ARG MAVEN_BASE=https://repo1.maven.org/maven2
 
 # Jars are fetched at build time and baked into the image so job runs never
