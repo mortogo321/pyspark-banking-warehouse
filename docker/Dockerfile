@@ -5,7 +5,7 @@
 # aws-java-sdk-bundle) and analyticsaccelerator-s3, at the versions declared in
 # hadoop-project-3.5.0.pom (aws-java-sdk-v2.version /
 # amazon-s3-analyticsaccelerator-s3.version). Bump all four together.
-FROM apache/spark:4.2.0-python3
+FROM apache/spark:4.3.0-python3
 
 USER root
 
